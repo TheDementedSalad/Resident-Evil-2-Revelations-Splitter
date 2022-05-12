@@ -7,8 +7,11 @@
 state("rerev2")
 {
 	uint p1hp : 0x1167EAC, 0x20, 0x1A08;
+	uint p2hp : 0x1167EAC, 0x24, 0x1A08;
     float p1stam : 0x117EE60, 0x84, 0x8, 0x1604, 0x8;
+	float p2stam : 0x117EE60, 0x88, 0x8, 0x1604, 0x8;
     float p1breath : 0x117EE60, 0x84, 0x8, 0x1604, 0xBC;
+	float p2breath : 0x117EE60, 0x88, 0x8, 0x1604, 0xBC;
 	byte inLoading : 0x1102BB4;
 	float IGT : 0x117D120, 0x1403F4;
 	byte inGame : 0x1152A10, 0x380;
@@ -20,13 +23,7 @@ state("rerev2")
 }
 
 startup
-{			
-	vars.chapStorage = new List<int>()
-	{102,152,203,254,47,98,144,197,198};
-	
-	vars.dlcStorage = new List<int>()
-	{88,108,98,118,188,189,199};
-	
+{				
 	settings.Add("Full", false, "Full Game & DLC");
 	settings.Add("Claire", false, "Claire Only");
 	settings.Add("Barry", false, "Barry Only");
@@ -43,7 +40,7 @@ start
 split
 {
 	if(settings["Full"] || settings["Claire"] || settings["Barry"]){
-	if (current.chapEnd == 8 && old.chapEnd != 1 && current.IGT == old.IGT){
+	if (current.chapEnd == 8 && old.chapEnd != 1 && old.chapEnd != 8 && current.IGT == old.IGT){
 		return true;
 		}
 	}
