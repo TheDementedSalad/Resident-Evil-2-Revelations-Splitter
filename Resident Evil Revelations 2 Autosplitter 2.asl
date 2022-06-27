@@ -20,6 +20,7 @@ state("rerev2")
 	byte areaNo: 0x117D120, 0x140380;
 	byte inGameCS: 0x1162E10, 0x54C;
 	byte chapEnd: 0x11D5A98, 0x119A;
+	byte fade: 0x561928, 0xC70, 0x568;
 }
 
 startup
@@ -48,7 +49,7 @@ split
 	
 isLoading
 {	
-		if(current.inLoading == 0 || current.IGT == old.IGT || current.inGameCS == 1){
+		if(current.inLoading == 0 || current.IGT == old.IGT || current.inGameCS == 1 || current.fade == 1){
 			return true;
 		}
 		else{
