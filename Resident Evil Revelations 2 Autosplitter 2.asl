@@ -1,4 +1,4 @@
-// Resident Evil Revelations 2 Autosplitter Version 1.1 23/10/22
+// Resident Evil Revelations 2 Autosplitter Version 1.0.6 08/11/2021
 // Supports LRT
 // Supports all difficulties & campaigns
 // Script & Pointers by TheDementedSalad
@@ -23,7 +23,6 @@ state("rerev2")
 	byte gameState: 0x117E4C8, 0x168, 0x3C, 0x8;
 	float Nani: 0x11DF8DC, 0x5C718;
 	byte chapEnd: 0x11DF8DC, 0x5C86C;
-	byte Fade: 0x11E5A24, 0x110;
 }
 
 startup
@@ -52,7 +51,7 @@ split
 	
 isLoading
 {	
-	if(current.inLoading != 1 || current.inGameCS == 1 || current.gameState != 4 || current.Nani == 0 || current.chapEnd == 8 || current.chapEnd == 3 || current.Fade == 1){
+	if(current.inLoading != 1 || current.inGameCS == 1 || current.gameState != 4 || current.Nani == 0 || current.chapEnd == 8 || current.chapEnd == 3){
 		return true;
 	}
 	else{
