@@ -40,6 +40,14 @@ start
 	}
 }
 
+update
+{
+    vars.p1StamInt = (int)Math.Floor(current.p1stam);
+	vars.p2StamInt = (int)Math.Floor(current.p2stam);
+	vars.p1BreathInt = (int)Math.Floor(current.p1breath);
+	vars.p2BreathInt = (int)Math.Floor(current.p2breath);
+}
+
 split
 {
 	if(settings["Full"] || settings["Claire"] || settings["Barry"]){
