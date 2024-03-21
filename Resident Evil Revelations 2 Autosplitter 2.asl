@@ -1,4 +1,4 @@
-// Resident Evil Revelations 2 Autosplitter Version 1.0.6 08/11/2021
+// Resident Evil Revelations 2 Autosplitter Version 1.0.7 08/11/2021
 // Supports LRT
 // Supports all difficulties & campaigns
 // Script & Pointers by TheDementedSalad
@@ -17,7 +17,7 @@ state("rerev2")
 	float IGT : 0x117D120, 0x1403F4;
 	byte inGame : 0x1152A10, 0x380;
 	byte inMenu : 0x117AE00, 0x34;
-	byte Cutscene : 0x11F887C, 0xA74, 0x20, 0x9C, 0x14;
+	byte Cutscene : 0x1162E10, 0x54C;
 	byte areaNo: 0x117D120, 0x140380;
 	byte inGameCS: 0x1162E10, 0x54C;
 	byte gameState: 0x117E4C8, 0x168, 0x3C, 0x8;
