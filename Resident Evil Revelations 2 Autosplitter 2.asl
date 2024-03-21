@@ -1,4 +1,4 @@
-// Resident Evil Revelations 2 Autosplitter Version 1.0.7 08/11/2021
+// Resident Evil Revelations 2 Autosplitter Version 1.0.6 08/11/2021
 // Supports LRT
 // Supports all difficulties & campaigns
 // Script & Pointers by TheDementedSalad
@@ -26,11 +26,24 @@ state("rerev2")
 }
 
 startup
-{				
+{	
+	settings.Add("Unlock", false, "In Game Unlocks");
+	settings.CurrentDefaultParent = "Unlock";
+	settings.Add("NoEs", false, "Unlock No Escape NG");
+	settings.CurrentDefaultParent = null;
+	
 	settings.Add("Full", false, "Full Game & DLC");
 	settings.Add("Claire", false, "Claire Only");
 	settings.Add("Barry", false, "Barry Only");
 	
+}
+
+update
+{
+	if(settings["NoEs"]){
+		game.WriteValue<byte>(game.ReadPointer((IntPtr)modules.First().BaseAddress+0x117D120) + 0x36C, 0x0F);
+		return true;
+	}
 }
 
 start
