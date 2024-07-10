@@ -13,16 +13,18 @@ state("rerev2")
     float p1breath : 0x117EE60, 0x84, 0x8, 0x1604, 0xBC;
 	float p2breath : 0x117EE60, 0x88, 0x8, 0x1604, 0xBC;
 
-	byte inLoading : 0x1102BB4;
-	float IGT : 0x117D120, 0x1403F4;
-	byte inGame : 0x1152A10, 0x380;
-	byte inMenu : 0x117AE00, 0x34;
-	byte Cutscene : 0x1162E10, 0x54C;
-	byte areaNo: 0x117D120, 0x140380;
-	byte inGameCS: 0x1162E10, 0x54C;
-	byte gameState: 0x117E4C8, 0x168, 0x3C, 0x8;
-	byte chapEnd: 0x1134480, 0x60, 0x8258;
-	byte Paused:	0x11DE768, 0x1698;
+	byte inLoading: 	0x1102BB4;
+	int areaNo: 		0x117D120, 0x140380;
+	int Checkpoint: 	0x117D120, 0x140388;
+	bool chapEnd: 		0x117D120, 0x1403D8;
+	int Objective: 		0x117D120, 0x1403DC;
+	float IGT: 			0x117D120, 0x1403F4;
+	byte inGame: 		0x1152A10, 0x380;
+	byte inMenu: 		0x117AE00, 0x34;
+	byte Cutscene: 		0x1162E10, 0x54C;
+	byte inGameCS: 		0x1162E10, 0x54C;
+	byte gameState: 	0x117E4C8, 0x168, 0x3C, 0x8;
+	byte Paused:		0x11DE768, 0x1698;
 }
 
 startup
@@ -32,9 +34,7 @@ startup
 	settings.Add("NoEs", false, "Unlock No Escape NG");
 	settings.CurrentDefaultParent = null;
 	
-	settings.Add("Full", false, "Full Game & DLC");
-	settings.Add("Claire", false, "Claire Only");
-	settings.Add("Barry", false, "Barry Only");
+	settings.Add("Chap", false, "Chapter End Splits");
 	
 }
 
@@ -55,8 +55,8 @@ start
 
 split
 {
-	if(settings["Full"] || settings["Claire"] || settings["Barry"]){
-	if (current.chapEnd == 3 && current.inMenu == 1){
+	if(settings["Chap"]){
+	if (current.chapEnd && !old.chapEnd){
 		return true;
 		}
 	}
