@@ -16,13 +16,11 @@ state("rerev2")
 	byte inLoading: 	0x1102BB4;
 	int areaNo: 		0x117D120, 0x140380;
 	int Checkpoint: 	0x117D120, 0x140388;
-	bool chapEnd: 		0x117D120, 0x1403D8;
 	int Objective: 		0x117D120, 0x1403DC;
 	float IGT: 			0x117D120, 0x1403F4;
 	byte inGame: 		0x1152A10, 0x380;
 	byte inMenu: 		0x117AE00, 0x34;
 	byte Cutscene: 		0x1162E10, 0x54C;
-	byte inGameCS: 		0x1162E10, 0x54C;
 	byte gameState: 	0x117E4C8, 0x168, 0x3C, 0x8;
 	byte Paused:		0x11DE768, 0x1698;
 	byte chapScore: 	0x1134480, 0x60, 0x8258;
@@ -49,7 +47,7 @@ update
 
 start
 {
-	if(current.inGameCS == 0 && old.inGameCS == 1 || current.areaNo == 201 && current.inLoading == 1 && current.inGame == 1 && current.inMenu != 0){
+	if(current.Cutscene == 0 && old.Cutscene == 1 || current.areaNo == 201 && current.inLoading == 1 && current.inGame == 1 && current.inMenu != 0){
 		return true;
 	}
 }
@@ -57,7 +55,7 @@ start
 split
 {
 	if(settings["Chap"]){
-	if (current.chapEnd && !old.chapEnd){
+	if (current.chapScore && !old.chapScore){
 		return true;
 		}
 	}
@@ -65,7 +63,7 @@ split
 	
 isLoading
 {	
-	if(current.inLoading != 1 || current.inGameCS == 1 || current.gameState != 4 || current.chapScore == 3 || current.Paused == 2 || current.Paused == 4 || current.Cutscene == 1){
+	if(current.inLoading != 1 || current.Cutscene == 1 || current.gameState != 4 || current.chapScore == 3 || current.Paused == 2 || current.Paused == 4){
 		return true;
 	}
 	else{
