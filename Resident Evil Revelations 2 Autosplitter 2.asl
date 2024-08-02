@@ -55,8 +55,8 @@ start
 split
 {
 	if(settings["Chap"]){
-	if (current.chapScore && !old.chapScore){
-		return true;
+		if (current.chapScore == 3 && old.chapScore != 3){
+			return true;
 		}
 	}
 }
